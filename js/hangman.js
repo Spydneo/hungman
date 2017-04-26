@@ -58,12 +58,12 @@ function buscarLetra(letra) {
 
         }
     }
-    for (y = 0; y < discoveredArray.length; y++) {
-        if (discoveredArray[y] != "_") {
+   ///
+        var estado = discoveredArray.indexOf("_");
+        if (estado == -1) {
             wordComplete = 1;
+            console.log("Palabra completada");
         }
-    }
-
 
     return wordComplete;
 }
@@ -74,19 +74,13 @@ function buscarLetra(letra) {
 
 /// Comprobación INicial
 function comprobacionInicial(letra) {
-    if (wordComplete == 1) {
-        console.log("Palabra completada");
-    } else {
+   
         if (estadoJuego.vidas <= 5) {
             ++estadoJuego.vidas
             buscarLetra(letra);
         } else {
             console.log("Vidas Teminadas");
         }
-
-    }
-
-
     //console.log("Estado Juego: "+estadoJuego);
     console.log("arrayDescubierto hasta el momento: " + discoveredArray);
 }
