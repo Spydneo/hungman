@@ -33,12 +33,11 @@ document.body.appendChild(generateButton("BotonBody"));
 var palabra = ["a", "n", "i", "m", "a", "l", ]
 var discoveredArray = [];
 var letterUser = "a";
-
-//Objeto estadoLetra
-var estadoLetra = {
-    letter: "",
+var wordComplete = 0;
+//Objeto estadoJuego
+var estadoJuego = {
+    vidas: 0,
     letraOk: 0,
-    posLetterFound: 0
 };
 //Relleno de  array DiscoveredWords
 for (i = 0; i < palabra.length; i++) {
@@ -48,54 +47,51 @@ for (i = 0; i < palabra.length; i++) {
 //console.log("DiscoveredArray: " + discoveredArray);
 
 //Function buscarLetra
-function buscarLetra(letra, pos) {
+function buscarLetra(letra) {
 
-    for (i = pos; i < palabra.length; i++) {
+    for (i = 0; i < palabra.length; i++) {
         if (letra == palabra[i]) {
-            estadoLetra.letraOk = 1;
-            estadoLetra.posLetterFound = i;
-            estadoLetra.letter = letra;
-            break;
+            estadoJuego.letraOk = 1;
+            discoveredArray[i] = letra;
         } else {
-            estadoLetra.letraOk = 0;
-            //estadoLetra.posLetterFound = i;
-            //estadoLetra.letter = letra;
+            estadoJuego.letraOk = 0;
+
+        }
+    }
+    for (y = 0; y < discoveredArray.length; y++) {
+        if (discoveredArray[y] != "_") {
+            wordComplete = 1;
         }
     }
 
-   // return estadoLetra;
+
+    return wordComplete;
 }
-
-
-
 
 
 //Actualización del array discoveredWords
 
-function discoveredWords(objLetter) {
-
-    if (objLetter.letraOk == 1) {
-        discoveredArray[objLetter.posLetterFound] = objLetter.letter;
-        console.log("Descubierta: " + discoveredArray);
-
-    } else {
-        console.log("Sin descubrir"+discoveredArray);
-    }
-
-}
 
 /// Comprobación INicial
-function comprobacionInicial() {
-    if (estadoLetra.letter == letterUser) {
-        buscarLetra(letterUser, estadoLetra.posLetterFound + 1);
+function comprobacionInicial(letra) {
+    if (wordComplete == 1) {
+        console.log("Palabra completada");
     } else {
-        buscarLetra(letterUser, 0);
+        if (estadoJuego.vidas <= 5) {
+            ++estadoJuego.vidas
+            buscarLetra(letra);
+        } else {
+            console.log("Vidas Teminadas");
+        }
+
     }
-    console.log("Estado letra: "+estadoLetra);
-    discoveredWords(estadoLetra);
+
+
+    //console.log("Estado Juego: "+estadoJuego);
+    console.log("arrayDescubierto hasta el momento: " + discoveredArray);
 }
 
-comprobacionInicial();
+comprobacionInicial(letterUser);
 
 
 //**** 2do paso Número de vidas y si ha ecncontrado la palabra completa
