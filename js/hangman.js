@@ -1,29 +1,64 @@
-//**** Generar Buttons
+$(document).ready(function(){
+    
+     
+    
+    function generateButton(letra){
+        var $newButton = $("<button>");
+        $newButton.text(letra);
+        $newButton.click(function(){
+           tratarClick($(this));
+        });
+        //var r= $('<input type="button" value="new button"/>');
+        //$("#w3s").attr("href", "https://www.w3schools.com/jquery");
+        $("#divButtons").append($newButton);    
+    }
 
-function generateButton(text) {
-    var btn = document.createElement("BUTTON");
-    var t = document.createTextNode(text);
-    btn.appendChild(t);
-
-    return btn;
-}
-
-
-function addElement(element, id) {
-    document.getElementById(id).appendChild(element);
-}
-
-
-function crearBotones() {
-
-}
-
-
-generateButton("Letra")
-addElement(generateButton("Letra"), "botones");
-//document.body.appendChild(generateButton("BotonBody"));
-
-
+    
+    console.log(alphabet);
+    var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    
+    function createButtons(){
+        for(i=0; i<alphabet.length; i++){
+            generateButton(alphabet[i]);
+        }
+    }
+    
+    createButtons();
+    
+    
+    /*
+    /// EJRCCIOS CLASE
+    $("img").addClass("image-center");
+    //$("article p:nth-child(5)").remove();
+    $("article p:eq(5)").remove();	
+    
+    //Añadir li
+    var $newLi = $("<li>");
+    $newLi.text("Nuevo Item");
+    $("ol").append($newLi);
+   
+    //3 inputs
+    $("input").click(function(){
+        $("body").css("background","green");
+    });
+    
+    $("img").click(function(){
+       $(this).hide(); 
+    });
+    
+    */
+    
+    
+    function tratarClick(button){
+        console.log("Boton pulsado: "+button.text());
+        
+         
+    }
+    
+    
+   
+    
+});
 
 //**************************   Lógica ************************
 
