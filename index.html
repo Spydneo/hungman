@@ -5,31 +5,41 @@
     <meta charset="UTF-8">
     <title>Hangman Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+
     <link href="estilos/style.css" rel="stylesheet" type="text/css">
-    
+
 </head>
 
 <body>
     <div class="container">
-        <h1 id="title" class="text-center">HANGMAN</h1>
-        <h2 class="text-center">VANILLA JAVASCRIPT HANGMAN GAME</h2>
-        <p class="text-center">Use the alphabet below to guess the word, or click hint to get a clue.</p>
         <div class="row">
-            <article class="col-sm-12" >
-               <p class="text-center">The chosen category is ...</p>
+            <article class="col-sm-10">
+                <h1 id="title" class="text-center">HANGMAN</h1>
+                <h2 class="text-center">VANILLA JAVASCRIPT HANGMAN GAME</h2>
+                <p class="text-center">Use the alphabet below to guess the word, or click hint to get a clue.</p>
+                <p class="text-center">The chosen category is ...</p>
                 <div id="divButtons" class="text-center">
-            
+
                 </div>
                 <div id="divWord">
                     <p id="arrayWord" class="text-center"></p>
                 </div>
-                
+
                 <div id="divLives">
                     <p id="pLifes" class="text-center"></p>
                 </div>
 
             </article>
+            <aside class="col-sm-2">
+               <div id="divWins">
+                   <p>WINS!</p>
+                   <p>0</p>
+               </div>
+               <div id="divLost">
+                   <p>LOST!</p>
+                   <p>0</p>
+               </div>
+            </aside>
 
         </div>
     </div>

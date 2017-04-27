@@ -22,12 +22,19 @@ $(document).ready(function () {
 
     function createButtons() {
         for (i = 0; i < alphabet.length; i++) {
-            
             $("#divButtons").append(generateButton(alphabet[i]));
         }
     }
     createButtons();
+    
+    function fillMatches(){
+        $("#idWins").text("Hola");
+        $("#idLost").text(estadoJuego.matchesLost);
 
+    }
+
+    fillMatches();
+    
     function tratarClick(button) {
         console.log("***Boton pulsado: " + button.text());
         comprobacionInicial(button.text());
@@ -56,6 +63,8 @@ $(document).ready(function () {
                 $("#pLifes").text("***You lost**** "+estadoJuego.matchesLost);
                 $("button").attr("disabled", "disabled")
             }
+            
+            fillMatches();
 
         }
     }
