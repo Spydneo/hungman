@@ -10,7 +10,10 @@ $(document).ready(function () {
         });
         //var r= $('<input type="button" value="new button"/>');
         //$("#w3s").attr("href", "https://www.w3schools.com/jquery");
-        $("#divButtons").append($newButton);
+        
+        return $newButton;
+        
+       // $("#divButtons").append($newButton);
     }
 
 
@@ -19,10 +22,10 @@ $(document).ready(function () {
 
     function createButtons() {
         for (i = 0; i < alphabet.length; i++) {
-            generateButton(alphabet[i]);
+            
+            $("#divButtons").append(generateButton(alphabet[i]));
         }
     }
-
     createButtons();
 
     function tratarClick(button) {
@@ -44,7 +47,16 @@ $(document).ready(function () {
 
     function endGame() {
         if (estadoJuego.endGame == true) {
-            $("#pLifes").text("***You lost****");
+            if (estadoJuego.wordComplete == true) {
+                ++estadoJuego.matchesWon;
+                $("#pLifes").text("***You Win**** "+estadoJuego.matchesWon);
+                $("button").attr("disabled", "disabled")
+            } else {
+                ++estadoJuego.matchesLost;
+                $("#pLifes").text("***You lost**** "+estadoJuego.matchesLost);
+                $("button").attr("disabled", "disabled")
+            }
+
         }
     }
 
@@ -55,11 +67,13 @@ $(document).ready(function () {
 var palabra = ["a", "n", "i", "m", "a", "l", ]
 var discoveredArray = [];
 var letterUser = "a";
-var wordComplete = 0;
 //Objeto estadoJuego
 var estadoJuego = {
     vidas: 5,
     endGame: false,
+    wordComplete: false,
+    matchesWon: 0,
+    matchesLost: 0
 };
 //Relleno de  array DiscoveredWords
 for (i = 0; i < palabra.length; i++) {
@@ -68,7 +82,7 @@ for (i = 0; i < palabra.length; i++) {
 
 //console.log("DiscoveredArray: " + discoveredArray);
 
-//Function buscarLetra
+//********* Function buscarLetra
 function buscarLetra(letra) {
 
     for (i = 0; i < palabra.length; i++) {
@@ -76,7 +90,7 @@ function buscarLetra(letra) {
             discoveredArray[i] = letra;
         }
     }
-    //Fin juego?
+    //Fin del juego?
     if (estadoJuego.vidas == 0) {
         console.log("**Vidas Teminadas");
         estadoJuego.endGame = true;
@@ -85,11 +99,11 @@ function buscarLetra(letra) {
     ///
     var estado = discoveredArray.indexOf("_");
     if (estado == -1) {
-        wordComplete = 1;
+        estadoJuego.wordComplete = true;
         console.log("Palabra completada");
     }
 
-    return wordComplete;
+    //return wordComplete;
 }
 
 
