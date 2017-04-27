@@ -21,13 +21,11 @@ function crearBotones() {
 
 generateButton("Letra")
 addElement(generateButton("Letra"), "botones");
-
-
-document.body.appendChild(generateButton("BotonBody"));
+//document.body.appendChild(generateButton("BotonBody"));
 
 
 
-//**************************   Lógica
+//**************************   Lógica ************************
 
 //****Variables a utilizar
 var palabra = ["a", "n", "i", "m", "a", "l", ]
@@ -37,7 +35,7 @@ var wordComplete = 0;
 //Objeto estadoJuego
 var estadoJuego = {
     vidas: 0,
-    letraOk: 0,
+    //letraOk: 0,
 };
 //Relleno de  array DiscoveredWords
 for (i = 0; i < palabra.length; i++) {
@@ -51,10 +49,10 @@ function buscarLetra(letra) {
 
     for (i = 0; i < palabra.length; i++) {
         if (letra == palabra[i]) {
-            estadoJuego.letraOk = 1;
+          //  estadoJuego.letraOk = 1;
             discoveredArray[i] = letra;
         } else {
-            estadoJuego.letraOk = 0;
+          //  estadoJuego.letraOk = 0;
 
         }
     }
@@ -81,7 +79,6 @@ function comprobacionInicial(letra) {
         } else {
             console.log("Vidas Teminadas");
         }
-    //console.log("Estado Juego: "+estadoJuego);
     console.log("arrayDescubierto hasta el momento: " + discoveredArray);
 }
 
